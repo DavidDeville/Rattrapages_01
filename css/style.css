@@ -1,0 +1,11 @@
+.form_input_name {
+    font-weight: bold;
+}
+
+.phoneError {
+    color: red;
+}
+
+.emailError {
+    color: red;
+}
