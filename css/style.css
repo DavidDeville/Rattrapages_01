@@ -9,3 +9,7 @@
 .emailError {
     color: red;
 }
+
+..inputError {
+    color: red;
+}

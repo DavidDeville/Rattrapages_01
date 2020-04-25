@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.admin_panel {
+    font-size: 2em;
+    color: grey;
+    text-align: center;
+    margin-top: 15px;
+}
+
+body {
+    background: #001f3f;
+}
