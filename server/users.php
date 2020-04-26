@@ -82,7 +82,7 @@ if(isset($_GET['displayuser'])) {
 
     $user_file_extension = pathinfo($currentUser[0]['picture']);
     $user_file_extension = $user_file_extension['extension'];
-    $user_file_name = strtolower(str_replace(" ", "_", $currentUser[0]['lastname'])) . "." . strtolower(str_replace(" ", "_", $currentUser[0]['firstname'])) . "." . $file_extension;
+    $user_file_name = strtolower(str_replace(" ", "_", $currentUser[0]['name'])) . "." . strtolower(str_replace(" ", "_", $currentUser[0]['firstname'])) . "." . $user_file_extension;
 
     var_dump($currentUser);
 }

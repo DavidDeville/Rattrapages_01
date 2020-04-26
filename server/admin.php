@@ -70,7 +70,7 @@
                         </td>
                         <td>
                             <?php
-                            echo $currentUser[0]["picture"] . "\n";
+                            echo $user_file_name . "\n";
                             ?>
                         </td>
                         <td>
