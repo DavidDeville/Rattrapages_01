@@ -57,7 +57,7 @@ try {
     
     
     $request = "SELECT * FROM internautes ORDER BY $parameter $order LIMIT $perPage OFFSET $offset";
-    var_dump($request);
+    //var_dump($request);
     $stmt = $connection->prepare($request);
     $stmt->execute();
 
@@ -66,6 +66,25 @@ try {
 } 
 catch (PDOException $e) {
     echo "Connection failed : " . $e->getMessage();
+}
+
+if(isset($_GET['displayuser'])) {
+    $id = $_GET['displayuser'];
+
+    /**
+     * Query to get user info from database
+     */
+    $userToQuery = "SELECT * FROM internautes WHERE id = :id";
+    $userQuery = $connection->prepare($userToQuery);
+    $userQuery->execute(['id' => $id]);
+
+    $currentUser = $userQuery->fetchAll(PDO::FETCH_ASSOC);
+
+    $user_file_extension = pathinfo($currentUser[0]['picture']);
+    $user_file_extension = $user_file_extension['extension'];
+    $user_file_name = strtolower(str_replace(" ", "_", $currentUser[0]['lastname'])) . "." . strtolower(str_replace(" ", "_", $currentUser[0]['firstname'])) . "." . $file_extension;
+
+    var_dump($currentUser);
 }
 
 if(isset($_GET['delete'])) {

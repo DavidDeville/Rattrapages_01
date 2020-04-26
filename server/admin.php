@@ -17,6 +17,78 @@
             <button type="submit" class="btn btn-primary"><a href="logout.php" class="logout">Logout</a></button>
         </div>
         <h2 class="admin_users">Current users in database</h2>
+        <?php if(isset($_GET['displayuser'])) { ?>
+            <table class="user_tab">
+            <tbody>
+                <tr>
+                    <?php include_once("users.php"); ?>
+                    <?php 
+                        $order = "ASC";
+                        if(isset($_GET["order"])) {
+                            if($_GET["order"] === "ASC") {
+                                $order = "DESC";
+                            }
+                            if($_GET["order"] === "DESC") {
+                                $order = "ASC";
+                            }
+                        }
+                    ?>
+                    <td><a href="admin.php?parameter=id&order=<?php echo $order?>&page=<?php echo $currentPage?>">ID</a></td>
+                    <td><a href="admin.php?parameter=email&order=<?php echo $order?>&page=<?php echo $currentPage?>">Email</a></td>
+                    <td><a href="admin.php?parameter=name&order=<?php echo $order?>&page=<?php echo $currentPage?>">Lastname</a></td>
+                    <td><a href="admin.php?parameter=firstname&order=<?php echo $order?>&page=<?php echo $currentPage?>">Firstname</a></td>
+                    <td><a href="admin.php?parameter=picture&order=<?php echo $order?>&page=<?php echo $currentPage?>">Picture</a></td>
+                    <td><a href="admin.php?parameter=phone&order=<?php echo $order?>&page=<?php echo $currentPage?>">Phone</a></td>
+                    <td>Delete</td>
+                </tr>
+                <?php
+                
+                ?>
+                    <tr>
+                        <td><a href="admin.php?displayuser=<?php echo $user["id"]?>">
+                            <?php
+                            echo $currentUser[0]["id"] . "\n";
+
+                            ?>
+                        </a></td>
+
+                        <td>
+                            <?php
+                            echo $currentUser[0]["email"] . "\n";
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            echo $currentUser[0]["name"] . "\n";
+                            ?>
+                        </td>
+                        <td>
+                        <?php
+                        echo substr($currentUser[0]["firstname"], 0, 1) . "\n";
+                    
+                        ?>
+                        </td>
+                        <td>
+                            <?php
+                            echo $currentUser[0]["picture"] . "\n";
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            echo $currentUser[0]["phone"] . "\n";
+                            ?>
+                        </td>
+                        <td>
+                        <?php
+                        ?>
+                            <button type="submit" class="btn btn-primary"><a href="admin.php?delete=<?php echo $user['id']?>" class="delete">Delete</a></button>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+            <?php }
+            else {
+        ?>
         <table class="user_tab">
             <tbody>
                 <tr>
@@ -90,6 +162,7 @@
         <?php
             }
         ?>
+        <?php }?>
     <?php } 
     else { 
     ?>
