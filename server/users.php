@@ -9,7 +9,6 @@ $password = "root";
 
 try {
     $connection = new PDO("mysql:host=" . $server . ";dbname=rattrapage_01", $username, $password);
-    // set error mode
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if(isset($_GET['limit'])) {
@@ -23,16 +22,11 @@ try {
      * First, we get the number of users in database
      */
     $usersCountQuery = "SELECT * FROM internautes";
-
     $query = $connection->prepare($usersCountQuery);
     $query->execute();
-
     $numberOfUsers = $query->fetchAll();
-
     $numberOfUsers = count($numberOfUsers);
-    var_dump($numberOfUsers);
-
-    // var_dump(count($count)); 7 USERS
+    $order = "ASC";
 
     /**
      * Then we do all the pagination logic with the number of pages
@@ -53,8 +47,6 @@ try {
         $parameter = "id";
     }
 
-    $order = "ASC";
-    
     if(isset($_GET['order'])) {
         $order = $_GET["order"];
     }
@@ -70,13 +62,21 @@ try {
     $stmt->execute();
 
     $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-    
-    //var_dump($pages);
 
-
-} catch (PDOException $e) {
+} 
+catch (PDOException $e) {
     echo "Connection failed : " . $e->getMessage();
 }
 
-?>
+if(isset($_GET['delete'])) {
+    $id = $_GET["delete"];
+
+    /**
+     * Query to delete user from database
+     */
+    $userToDelete = "DELETE FROM internautes WHERE id = :id";
+    $deleteQuery = $connection->prepare($userToDelete);
+    $deleteQuery->execute(['id' => $id]);
+
+    header('Location: http://localhost:8000/admin.php');
+}

@@ -44,12 +44,12 @@
                 foreach ($users as $user) {
                 ?>
                     <tr>
-                        <td>
+                        <td><a href="admin.php?displayuser=<?php echo $user["id"]?>">
                             <?php
                             echo $user["id"] . "\n";
 
                             ?>
-                        </td>
+                        </a></td>
 
                         <td>
                             <?php
@@ -64,6 +64,13 @@
                         <td>
                         <?php
                         echo substr($user["firstname"], 0, 1) . "\n";
+                    
+                        ?>
+                        <td>
+                        <?php
+                        ?>
+                            <button type="submit" class="btn btn-primary"><a href="admin.php?delete=<?php echo $user['id']?>" class="delete">Delete</a></button>
+                        <?php
                     }
                         ?>
                         </td>

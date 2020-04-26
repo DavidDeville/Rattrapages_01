@@ -28,8 +28,6 @@ if(isset($_POST)) {
 
         $user = $stmt->fetch();
 
-        //var_dump($user);
-
         if($user != false) {
             echo "success";
             session_start();

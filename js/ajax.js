@@ -43,10 +43,8 @@ $(document).ready(function() {
                 $('.phoneError').hide();   
             }
         }  
-        //console.log(process.length);
 
         if(process.length < 1) {
-            //console.log("pouet");
             $.ajax({
                 type:'post',
                 url: 'http://localhost:8000/form.php',
