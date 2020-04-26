@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+.header {
+    display: block;
+}
+
 .admin_panel {
     font-size: 2em;
     color: grey;
@@ -10,6 +14,30 @@
     margin-top: 15px;
 }
 
+.logout {
+    color: white;
+}
+
+.admin_users {
+    color: white;
+    text-align: center;
+}
+
 body {
     background: #001f3f;
+}
+
+.user_tab {
+    color: white;
+}
+
+table {
+    border: 1px solid white;
+}
+
+td {
+    padding-left: 10px;
+    padding-top: 5px;
+    border: 1px solid white;
+    padding-right: 10px;
 }
